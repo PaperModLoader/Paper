@@ -1,7 +1,10 @@
 # Paper
-Paper is a mod loader for Minecraft
+Paper is a mod loader for Minecraft.
 
-## Formatting / Design Choices
+## Our goal
+Our goal with Paper is to create a modern Minecraft mod loader, utilizing the latest Java standards, in a lightweight fashion.
+
+## Code Style
 - 4 spaces should be used in place of tabs.
 - Braces must be placed on the same line, for example:
 ```java
