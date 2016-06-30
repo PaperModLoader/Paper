@@ -38,7 +38,7 @@ dependencies {
 
 paper {
     minecraft = "1.10.2"
-    mappings = 1
+    mappings = 5
 }
 
 String getVersion() {
