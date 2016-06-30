@@ -1,5 +1,5 @@
 # Paper
-Paper is a mod loader for Minecraft.
+Minecraft Mod Loader
 
 ## Our goal
 Our goal with Paper is to create a modern Minecraft mod loader, utilizing the latest Java standards, in a lightweight fashion.
