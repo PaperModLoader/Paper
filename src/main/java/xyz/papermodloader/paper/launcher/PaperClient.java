@@ -37,7 +37,7 @@ public class PaperClient {
 
         arguments.addArgument("version", "1.10.2");
         arguments.addArgument("assetIndex", "1.10");
-        arguments.addArgument("assetsDir", new File(System.getenv("user.home"), ".gradle" + File.separator + "caches" + File.separator + "paper" + File.separator + "assets").getAbsolutePath());
+        arguments.addArgument("assetsDir", new File(System.getProperty("user.home"), ".gradle" + File.separator + "caches" + File.separator + "paper" + File.separator + "assets").getAbsolutePath());
         arguments.addArgument("accessToken", "PaperModLoader");
         arguments.addArgument("tweakClass", "xyz.papermodloader.paper.launcher.PaperClientTweaker");
 
