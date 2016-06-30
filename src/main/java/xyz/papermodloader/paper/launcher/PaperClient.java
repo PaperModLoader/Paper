@@ -13,7 +13,7 @@ import java.net.Proxy;
 
 public class PaperClient {
     public static void main(String[] args) {
-        System.setProperty("java.library.path", new File(System.getProperty("user.home"), ".gradle" + File.separator + "caches" + File.separator + "paper" + File.separator + "natives").getAbsolutePath());
+        System.setProperty("org.lwjgl.librarypath", new File(System.getProperty("user.home"), ".gradle" + File.separator + "caches" + File.separator + "paper" + File.separator + "natives").getAbsolutePath());
         LaunchArguments arguments = new LaunchArguments(args);
 
         if (arguments.containsArgument("password")) {
