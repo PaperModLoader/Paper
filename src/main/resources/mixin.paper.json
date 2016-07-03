@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "package": "xyz.papermodloader.paper.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "MinecraftServerMixin",
+    "WorldMixin",
+    "InputHandlerMixin",
+    "EntityMixin"
+  ],
+  "client": [
+    "MinecraftClientMixin",
+    "ClientInputHandlerMixin",
+    "MainMenuGUIMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

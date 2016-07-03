@@ -1,51 +1,77 @@
 package xyz.papermodloader.paper.launcher;
 
 import net.minecraft.launchwrapper.ITweaker;
+import net.minecraft.launchwrapper.Launch;
 import net.minecraft.launchwrapper.LaunchClassLoader;
+import org.apache.logging.log4j.LogManager;
+import org.spongepowered.asm.launch.MixinBootstrap;
+import org.spongepowered.asm.mixin.MixinEnvironment;
+import org.spongepowered.asm.mixin.Mixins;
+import xyz.papermodloader.paper.launcher.side.Side;
+import xyz.papermodloader.paper.util.Arguments;
+import xyz.papermodloader.paper.util.LoggerPrintStream;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.lang.reflect.Method;
 import java.util.List;
-import java.util.Map;
 
-public abstract class PaperTweaker implements ITweaker {
-    private Map<String, String> args = new HashMap<>();
+public class PaperTweaker implements ITweaker {
+    private Arguments arguments;
+    private String target;
+    private String tweaker;
+    private Side side;
+
+    public PaperTweaker(String target, String tweaker, Side side) {
+        System.setOut(new LoggerPrintStream(LogManager.getLogger("SYSOUT"), System.out));
+        System.setErr(new LoggerPrintStream(LogManager.getLogger("SYSERR"), System.err));
+        this.target = target;
+        this.tweaker = tweaker;
+        this.side = side;
+    }
 
     @Override
     public void acceptOptions(List<String> args, File gameDir, File assetsDir, String profile) {
-        if (!this.args.containsKey("--version")) {
-            this.args.put("--version", profile != null ? profile : "Paper");
+        ((List<String>) Launch.blackboard.get("TweakClasses")).add("org.spongepowered.asm.launch.MixinTweaker");
+
+        this.arguments = new Arguments(args);
+        if (!this.arguments.has("version")) {
+            this.arguments.add("version", profile != null ? profile : "Paper");
         }
-        if (!this.args.containsKey("--gameDir") && gameDir != null) {
-            this.args.put("--gameDir", gameDir.getAbsolutePath());
+        if (!this.arguments.has("gameDir") && gameDir != null) {
+            this.arguments.add("gameDir", gameDir.getAbsolutePath());
         }
-        if (!this.args.containsKey("--assetsDir") && assetsDir != null) {
-            this.args.put("--assetsDir", assetsDir.getAbsolutePath());
-        }
-        if (!this.args.containsKey("--accessToken")) {
-            this.args.put("--accessToken", "Paper");
-        }
-        for (int i = 0; i < args.size(); i++) {
-            String arg = args.get(i);
-            if (arg.startsWith("--")) {
-                this.args.put(arg, args.get(i + 1));
+        if (this.side == Side.CLIENT) {
+            if (!this.arguments.has("assetsDir") && assetsDir != null) {
+                this.arguments.add("assetsDir", assetsDir.getAbsolutePath());
             }
         }
+
+        MixinBootstrap.init();
+        Mixins.addConfiguration("mixin.paper.json");
+        MixinEnvironment.getDefaultEnvironment().setSide(this.side == Side.CLIENT ? MixinEnvironment.Side.CLIENT : MixinEnvironment.Side.SERVER);
     }
 
     @Override
     public void injectIntoClassLoader(LaunchClassLoader classLoader) {
-        classLoader.addTransformerExclusion("xyz.papermodloader.paper.launcher");
+        classLoader.addClassLoaderExclusion("xyz.papermodloader.paper.launcher");
+        classLoader.registerTransformer(this.tweaker);
+
+        try {
+            Class<?> paperTweaker = Class.forName("xyz.papermodloader.paper.event.PaperHooks", true, Launch.classLoader);
+            Method loadMods = paperTweaker.getDeclaredMethod("loadMods", boolean.class);
+            loadMods.invoke(null, this.tweaker.contains("Dev"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public String getLaunchTarget() {
+        return this.target;
     }
 
     @Override
     public String[] getLaunchArguments() {
-        List<String> launchArgs = new ArrayList<>();
-        for (Map.Entry<String, String> arg : this.args.entrySet()) {
-            launchArgs.add(arg.getKey());
-            launchArgs.add(arg.getValue());
-        }
-        return launchArgs.toArray(new String[launchArgs.size()]);
+        return this.arguments.build();
     }
 }

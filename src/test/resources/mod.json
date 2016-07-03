@@ -1,0 +1,7 @@
+[
+  {
+    "main_class": "xyz.papermodloader.test.TestMod",
+    "id": "test",
+    "name": "Test"
+  }
+]

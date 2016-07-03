@@ -1,8 +1,9 @@
 buildscript {
     repositories {
+        mavenCentral()
         maven {
             name = "ilexiconn"
-            url = "http://maven.ilexiconn.net/"
+            url = "http://maven.ilexiconn.net"
         }
     }
     dependencies {
@@ -28,27 +29,37 @@ if (System.getenv().BUILD_NUMBER) {
 
 repositories {
     mavenCentral()
+    maven {
+        name = "cuchaz"
+        url = "http://maven.cuchazinteractive.com"
+    }
+    maven {
+        name = "sponge"
+        url = "http://repo.spongepowered.org/maven"
+    }
 }
 
 dependencies {
-    compile "com.google.code.gson:gson:2.7"
-    compile "commons-io:commons-io:2.5"
-    compile "org.ow2.asm:asm-debug-all:5.1"
+    compile "cuchaz:enigma-lib:0.11b"
+    compile("org.spongepowered:mixin:0.5.7-SNAPSHOT") {
+        exclude module: "launchwrapper"
+        exclude module: "guava"
+    }
 }
 
 paper {
     minecraft = "1.10.2"
-    mappings = 7
+    mappings = 21
 }
 
 String getVersion() {
     String version = "0.0.0"
-    String prefix = "public static final String VERSION = \"";
+    String prefix = "public static final Version VERSION = new Version(\"";
     File file = file("src/main/java/xyz/papermodloader/paper/Paper.java")
     file.eachLine { String s ->
         s = s.trim();
         if (s.startsWith(prefix)) {
-            s = s.substring(prefix.length(), s.length() - 2);
+            s = s.substring(prefix.length(), s.length() - 3);
             version = s;
         }
     }

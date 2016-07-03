@@ -57,3 +57,11 @@ public void doSomething() {
 - JavaDocs should be made for everything, with a few exceptions.
     - A description for a getter does not need to be made (although can be), as the @return should already describe what the method does.
     - A description for a constructor does not need to be made (although can be), as the class JavaDoc should describe the class.
+
+## Contributing
+1. Fork Paper
+2. Create your feature branch: `git checkout -b my-new-feature`
+3. Setup paper: `gradlew.bat setupPaper setupIDEA --refresh-dependencies`
+3. Commit your changes: `git commit -m "Add some feature"`
+4. Push to the branch: `git push origin my-new-feature`
+5. Submit a pull request
