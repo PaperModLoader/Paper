@@ -12,7 +12,7 @@ import xyz.papermodloader.paper.event.EventHandler;
 import xyz.papermodloader.paper.event.impl.BlockEvent;
 
 @Mixin(ClientInputHandler.class)
-public class ClientInputHandlerMixin {
+public abstract class ClientInputHandlerMixin {
     @Inject(method = "a(Lnet/minecraft/util/Position;)Z", cancellable = true, at = @At("HEAD"), remap = false)
     public void canDestroyBlock(Position position, CallbackInfoReturnable info) {
         World world = MinecraftClient.get().clientWorld;

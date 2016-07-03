@@ -9,7 +9,7 @@ import xyz.papermodloader.paper.Paper;
 import xyz.papermodloader.paper.server.PaperServerHandler;
 
 @Mixin(MinecraftServer.class)
-public class MinecraftServerMixin {
+public abstract class MinecraftServerMixin {
     @Inject(method = "run()V", at = @At("HEAD"), remap = false)
     private void onInitialize(CallbackInfo info) {
         Paper.INSTANCE.onInitialize(new PaperServerHandler((MinecraftServer) (Object) this));

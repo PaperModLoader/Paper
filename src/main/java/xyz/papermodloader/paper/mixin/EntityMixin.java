@@ -9,7 +9,7 @@ import xyz.papermodloader.paper.event.EventHandler;
 import xyz.papermodloader.paper.event.impl.UpdateEvent;
 
 @Mixin(Entity.class)
-public class EntityMixin {
+public abstract class EntityMixin {
     @Inject(method = "handleUpdate()V", at = @At("HEAD"), remap = false)
     public void handleUpdate(CallbackInfo info) {
         EventHandler.UPDATE_ENTITY.post(new UpdateEvent.Entity((Entity) (Object) this));

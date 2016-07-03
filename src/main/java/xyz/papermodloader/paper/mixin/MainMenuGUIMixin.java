@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(MainMenuGUI.class)
-public class MainMenuGUIMixin extends ScreenGUI {
+public abstract class MainMenuGUIMixin extends ScreenGUI {
     @Shadow
     private ButtonGUI K;
 

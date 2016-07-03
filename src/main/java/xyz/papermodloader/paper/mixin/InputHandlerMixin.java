@@ -12,7 +12,7 @@ import xyz.papermodloader.paper.event.EventHandler;
 import xyz.papermodloader.paper.event.impl.BlockEvent;
 
 @Mixin(InputHandler.class)
-public class InputHandlerMixin {
+public abstract class InputHandlerMixin {
     @Shadow
     public World world;
 

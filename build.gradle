@@ -41,7 +41,7 @@ repositories {
 
 dependencies {
     compile "cuchaz:enigma-lib:0.11b"
-    compile("org.spongepowered:mixin:0.5.7-SNAPSHOT") {
+    compile("org.spongepowered:mixin:0.5.11-SNAPSHOT") {
         exclude module: "launchwrapper"
         exclude module: "guava"
     }
