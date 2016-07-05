@@ -20,7 +20,7 @@ public class GUIEvent extends Event {
      * @return the GUI this event occurred on.
      */
     public ScreenGUI getGUI() {
-        return gui;
+        return this.gui;
     }
 
     /**

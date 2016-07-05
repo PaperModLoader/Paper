@@ -19,7 +19,7 @@ public class Arguments {
     }
 
     public String get(String key) {
-        if (has(key)) {
+        if (this.has(key)) {
             return this.arguments.get(key);
         } else {
             return "";
@@ -41,7 +41,7 @@ public class Arguments {
     public String[] build() {
         String[] args = new String[this.arguments.size() * 2];
         List<Map.Entry<String, String>> entries = new ArrayList<>(this.arguments.entrySet());
-        for (int i = 0; i < arguments.size(); i++) {
+        for (int i = 0; i < this.arguments.size(); i++) {
             Map.Entry<String, String> entry = entries.get(i);
             args[i * 2] = "--" + entry.getKey();
             args[i * 2 + 1] = entry.getValue();

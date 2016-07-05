@@ -31,13 +31,13 @@ public class ModCandidate {
      * @return the json object of the found mod.
      */
     public JsonObject getObject() {
-        return object;
+        return this.object;
     }
 
     /**
      * @return the file of the found mod. Null if the mod is already in the classpath.
      */
     public File getFile() {
-        return file;
+        return this.file;
     }
 }

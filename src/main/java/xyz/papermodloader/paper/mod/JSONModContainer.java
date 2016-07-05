@@ -30,7 +30,7 @@ public class JSONModContainer implements ModContainer {
 
     private String main_class;
     private String id;
-    private String name = id;
+    private String name = this.id;
     private String version = "1.0.0";
     private String mc_version = Paper.MINECRAFT_VERSION.getVersion();
     private String description = "";

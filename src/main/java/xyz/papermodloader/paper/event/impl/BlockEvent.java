@@ -34,21 +34,21 @@ public class BlockEvent extends Event {
      * @return the world this event was fired in.
      */
     public World getWorld() {
-        return world;
+        return this.world;
     }
 
     /**
      * @return the block.
      */
     public BlockState getBlockState() {
-        return blockState;
+        return this.blockState;
     }
 
     /**
      * @return the position of the block.
      */
     public Position getPosition() {
-        return position;
+        return this.position;
     }
 
     /**

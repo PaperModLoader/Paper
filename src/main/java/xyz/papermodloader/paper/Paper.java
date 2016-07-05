@@ -57,6 +57,6 @@ public enum Paper {
      * @return the sided handler of this Paper installation.
      */
     public SidedHandler getSidedHandler() {
-        return sidedHandler;
+        return this.sidedHandler;
     }
 }

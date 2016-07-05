@@ -6,8 +6,6 @@ import com.mojang.authlib.exceptions.AuthenticationException;
 import com.mojang.authlib.properties.PropertyMap;
 import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
 import com.mojang.authlib.yggdrasil.YggdrasilUserAuthentication;
-import javassist.CannotCompileException;
-import javassist.NotFoundException;
 import net.minecraft.launchwrapper.Launch;
 import xyz.papermodloader.paper.launcher.side.Side;
 import xyz.papermodloader.paper.util.Arguments;
@@ -26,7 +24,7 @@ public class PaperStart {
      *
      * @param args the program args. Use {@code --side [side]} to run Minecraft, or use {@code --hooks true} to regenerate the hooks.
      */
-    public static void main(String[] args) throws IOException, NotFoundException, CannotCompileException {
+    public static void main(String[] args) throws IOException {
         Arguments arguments = new Arguments(args);
 
         if (!arguments.has("side")) {
@@ -77,11 +75,7 @@ public class PaperStart {
         System.out.println("Paper " + Paper.VERSION);
         System.out.println("https://github.com/PaperModLoader/Paper");
         System.out.println("=======================================");
-        System.out.println("Powered by Enigma");
-        System.out.println("http://www.cuchazinteractive.com/");
-        System.out.println("=======================================");
 
         Launch.main(arguments.build());
-
     }
 }

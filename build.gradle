@@ -16,7 +16,7 @@ plugins {
     id "maven-publish"
 }
 
-apply plugin: "xyz.papermodloader.tree"
+apply plugin: "xyz.papermodloader.tree.paper"
 
 group = "xyz.papermodloader"
 version = getVersion()
@@ -30,17 +30,12 @@ if (System.getenv().BUILD_NUMBER) {
 repositories {
     mavenCentral()
     maven {
-        name = "cuchaz"
-        url = "http://maven.cuchazinteractive.com"
-    }
-    maven {
         name = "sponge"
         url = "http://repo.spongepowered.org/maven"
     }
 }
 
 dependencies {
-    compile "cuchaz:enigma-lib:0.11b"
     compile("org.spongepowered:mixin:0.5.11-SNAPSHOT") {
         exclude module: "launchwrapper"
         exclude module: "guava"
@@ -49,7 +44,7 @@ dependencies {
 
 paper {
     minecraft = "1.10.2"
-    mappings = 21
+    mappings = 25
 }
 
 String getVersion() {
