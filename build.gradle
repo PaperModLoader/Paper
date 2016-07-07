@@ -63,7 +63,7 @@ String getVersion() {
             version = s;
         }
     }
-    return version;
+    return version + "-1.10.2";
 }
 
 publishing {
