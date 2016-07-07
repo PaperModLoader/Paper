@@ -86,7 +86,7 @@ publishing {
                 }
             }
             if (System.getenv().PASSWORD) {
-                url System.getenv().REPO
+                url "sftp://connect.ilexiconn.net:22/home/ilexiconn/maven/"
             } else {
                 url "file:///var/www/maven/"
             }
