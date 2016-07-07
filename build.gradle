@@ -33,6 +33,10 @@ repositories {
         name = "sponge"
         url = "http://repo.spongepowered.org/maven"
     }
+    maven {
+        name = "ilexiconn"
+        url = "http://maven.ilexiconn.net"
+    }
 }
 
 dependencies {
@@ -40,11 +44,12 @@ dependencies {
         exclude module: "launchwrapper"
         exclude module: "guava"
     }
+    compile "xyz.papermodloader:book:0.1.0.17"
 }
 
 paper {
     minecraft = "1.10.2"
-    mappings = 25
+    mappings = 31
 }
 
 String getVersion() {

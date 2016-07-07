@@ -3,6 +3,7 @@ package xyz.papermodloader.paper.mixin;
 import net.minecraft.client.gui.ButtonGUI;
 import net.minecraft.client.gui.MainMenuGUI;
 import net.minecraft.client.gui.ScreenGUI;
+import net.minecraft.client.translate.Translator;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -15,9 +16,9 @@ public abstract class MainMenuGUIMixin extends ScreenGUI {
     private ButtonGUI K;
 
     private void b(int a1, int a2) {
-        this.addButton(new ButtonGUI(1, this.l / 2 - 100, a1, /*bxl.a(*/"menu.singleplayer"/*, new Object[]{})*/));
-        this.addButton(new ButtonGUI(2, this.l / 2 - 100, a1 + a2, /*bxl.a(*/"menu.multiplayer"/*, new Object[]{})*/));
-        this.K = this.addButton(new ButtonGUI(14, this.l / 2 + 2, a1 + a2 * 2, 98, 20, /*bxl.a(*/"menu.online"/*, new Object[]{}).replace("Minecraft", "").trim()*/));
+        this.addButton(new ButtonGUI(1, this.l / 2 - 100, a1, Translator.translate("menu.singleplayer", new Object[]{})));
+        this.addButton(new ButtonGUI(2, this.l / 2 - 100, a1 + a2, Translator.translate("menu.multiplayer", new Object[]{})));
+        this.K = this.addButton(new ButtonGUI(14, this.l / 2 + 2, a1 + a2 * 2, 98, 20, Translator.translate("menu.online", new Object[]{}).replace("Minecraft", "").trim()));
         this.addButton(new ButtonGUI(100, this.l / 2 - 100, a1 + a2 * 2, 98, 20, "Paper"));
     }
 
